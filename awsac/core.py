@@ -53,6 +53,8 @@ def set_profile_env_variables(profile='default'):
                     environemnt_variables['AWS_SECRET_ACCESS_KEY'] = vals[1]
                 if vals[0] == 'aws_session_token':
                     environemnt_variables['AWS_SESSION_TOKEN'] = vals[1]
+                if vals[0] == 'mfa_serial':
+                    environemnt_variables['AWS_MFA_SERIAL'] = vals[1]
 
                 if '[' in line and ']' in line and 'default' not in line or vals is '':
                     break
