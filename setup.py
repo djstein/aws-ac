@@ -20,7 +20,7 @@ AUTHOR = 'Dylan Stein'
 
 # What packages are required for this module to be executed?
 REQUIRED = [
-    # 'requests', 'maya', 'records',
+    'click', 'requests',
 ]
 
 # The rest you shouldn't have to touch too much :)
