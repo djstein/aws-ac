@@ -6,15 +6,7 @@ aws-ac start
 ```
 
 ## Install
-Must be using Python 3! For MacOS and Linux. No native Windows support.
 ```
-pip install aws-ac
-```
-
-If Python 3 is not your default Python Environment:
-```
-python3 -m venv venv
-source venv/bin/activate
 pip install aws-ac
 ```
 
