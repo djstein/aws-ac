@@ -14,25 +14,41 @@ def cli():
         raise SystemExit
 
 
+@cli.command('start')
+@click.option('--user', default=None, help='AWS Username', required=False)
+@click.option('--token', default=None, help='MFA Token', required=False)
+@click.option('--serial', default=None, help='MFA Serial', required=False)
+def start(user, token, serial):
+    kwargs = {
+        'user': user,
+        'token': token,
+        'serial': serial
+    }
+    install_clis(**kwargs)
+    configure_all(**kwargs)
+    if token:
+        get_mfa_session(**kwargs)
+
+
 @cli.command('install')
 @click.option('--upgrade', is_flag=True)
-@click.argument('cli', required=False)
+@click.option('--cli', default=None, help='CLI', required=False)
 def install(upgrade, cli):
     kwargs = {'upgrade': upgrade, 'cli': cli}
     install_clis(**kwargs)
 
 
 @cli.command('configure')
-@click.argument('user', required=False)
-@click.argument('cli', required=False)
+@click.option('--user', default=None, help='AWS Username', required=False)
+@click.option('--cli', default=None, help='CLI', required=False)
 def configure(user, cli):
     kwargs = {'user': user, 'cli': cli}
     configure_all(**kwargs)
 
 
 @cli.command('mfa')
-@click.argument('token')
-@click.argument('serial', required=False)
+@click.option('--token', default=None, help='MFA Token', required=True)
+@click.option('--serial', default=None, help='MFA Serial', required=False)
 def mfa(token, serial):
     kwargs = {'token': token, 'serial': serial}
     get_mfa_session(**kwargs)
