@@ -8,10 +8,10 @@ def cli():
     """awc-ac
     Automatically configurate credentials for AWS and ECS cli's
     """
-    if sys.version_info[0] == 2:
-        print("Current environment is Python 2.")
-        print("Please use a Python 3.6 virtualenv.")
-        raise SystemExit
+    # if sys.version_info[0] == 2:
+    #     print("Current environment is Python 2.")
+    #     print("Please use a Python 3.6 virtualenv.")
+    #     raise SystemExit
 
 
 @cli.command('start')
@@ -47,7 +47,7 @@ def configure(user, cli):
 
 
 @cli.command('mfa')
-@click.option('--token', default=None, help='MFA Token', required=True)
+@click.argument('token', required=True)
 @click.option('--serial', default=None, help='MFA Serial', required=False)
 def mfa(token, serial):
     kwargs = {'token': token, 'serial': serial}
